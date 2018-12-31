@@ -2,7 +2,8 @@
   <ul class="todo-list">
     <li v-for="todo in sortedTasks" class="todo">
       <div class="view">
-        <label>{{ todo.title }}</label>
+        <input class="toggle" @click="completeTask(todo)" type="checkbox"/>
+        <label :class="{'todo-completed':todo.completed}">{{ todo.title }}</label>
       </div>
     </li>
   </ul>
@@ -26,6 +27,11 @@
           this.todoList.concat(novaLista)
         }
       }
+    },
+    methods: {
+      completeTask (task) {
+        task.completed = !task.completed
+      }
     }
   }
 </script>
@@ -45,6 +51,7 @@
 
   .todo-completed{
     text-decoration: line-through;
+    color: #FF4C4C;
   }
 
   .todo-list li:last-child {
