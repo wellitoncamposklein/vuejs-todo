@@ -1,11 +1,3 @@
-<template>
-  <div>
-    <input class="new-todo"
-           @keyup.enter="addTask"
-           placeholder="O que precisa ser feito?">
-  </div>
-</template>
-
 <script>
   import { Task } from '../models/Task'
 
@@ -18,15 +10,33 @@
     methods: {
       addTask ($event) {
         let value = $event.target.value
+        let task = this.createTask(value)
+        this.broadcast(task)
+        this.clearField($event)
+      },
+      createTask (value) {
         let task = new Task()
         task.completed = false
         task.title = value
+        return task
+      },
+      clearField () {
+        this.$el.querySelector('input').value = ''
+      },
+      broadcast (task) {
         this.$emit('newTask', task)
-        $event.target.value = ''
       }
     }
   }
 </script>
+
+<template>
+  <div>
+    <input class="new-todo"
+           @keyup.enter="addTask"
+           placeholder="O que precisa ser feito?">
+  </div>
+</template>
 
 <style>
   .todoapp input::-webkit-input-placeholder {
