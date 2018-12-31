@@ -1,14 +1,27 @@
 <template>
   <div>
-    <input class="new-todo" placeholder="O que precisa ser feito?">
+    <input class="new-todo"
+           @keyup.enter="addTask"
+           placeholder="O que precisa ser feito?">
   </div>
 </template>
 
 <script>
+  import { Task } from '../models/Task'
+
   export default {
     name: 'InputTask',
     data () {
       return {
+      }
+    },
+    methods: {
+      addTask ($event) {
+        let value = $event.target.value
+        let task = new Task()
+        task.completed = false
+        task.title = value
+        console.log(task)
       }
     }
   }

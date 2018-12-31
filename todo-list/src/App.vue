@@ -2,7 +2,7 @@
   <section class="todoapp">
     <header class="header">
       <h1>Tarefas</h1>
-      <InputTask></InputTask>
+      <input-task></input-task>
     </header>
   </section>
 </template>
