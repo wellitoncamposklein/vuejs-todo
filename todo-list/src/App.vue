@@ -9,17 +9,8 @@
 </template>
 
 <script>
-  import { Task } from './models/Task'
   import InputTask from './components/InputTask'
   import TaskList from './components/TaskList'
-
-  let tasks = []
-  let task = new Task()
-  task.completed = false
-  task.title = 'Tarefa'
-  tasks.push(task)
-  tasks.push(task)
-  tasks.push(task)
 
   export default {
     name: 'app',
@@ -29,7 +20,7 @@
     },
     data () {
       return {
-        tasks: tasks
+        tasks: []
       }
     },
     methods: {

@@ -1,6 +1,6 @@
 <template>
   <ul class="todo-list">
-    <li v-for="todo in todoList" class="todo">
+    <li v-for="todo in sortedTasks" class="todo">
       <div class="view">
         <label>{{ todo.title }}</label>
       </div>
@@ -11,7 +11,22 @@
 <script>
   export default {
     name: 'TaskList',
-    props: ['todoList']
+    props: ['todoList'],
+    computed: {
+      sortedTasks: {
+        get () {
+          let sorted = this.todoList
+          return sorted.sort((a, b) => {
+            if (a.title < b.title) return -1
+            if (a.title > b.title) return 1
+            return 0
+          })
+        },
+        set (novaLista) {
+          this.todoList.concat(novaLista)
+        }
+      }
+    }
   }
 </script>
 
