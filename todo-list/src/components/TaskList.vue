@@ -1,11 +1,11 @@
 <template>
   <ul class="todo-list">
-    <transition-group appear name="fade">
+    <transition-group name="fade">
       <li v-for="todo in sortedTasks"
           class="todo" :key="todo.title">
         <div class="view">
-          <input class="toggle" @click="completeTask(todo)" type="checkbox"/>
-          <label :class="{'todo-completed':todo.completed}">{{ todo.title }}</label>
+          <input class="toggle" @click="completeTask(todo)" type="checkbox">
+          <label  v-bind:class="{ 'todo-completed': todo.completed }" >{{ todo.title }}</label>
         </div>
       </li>
     </transition-group>
@@ -14,42 +14,20 @@
 
 <script>
   export default {
-    name: 'TaskList',
-    props: ['todoList'],
     computed: {
-      sortedTasks: {
-        get () {
-          let sorted = this.todoList
-          return sorted.sort((a, b) => {
-            if (a.title < b.title) return -1
-            if (a.title > b.title) return 1
-            return 0
-          })
-        },
-        set (novaLista) {
-          this.todoList.concat(novaLista)
-        }
+      sortedTasks: function () {
+        return this.$store.getters.sortedTasks
       }
     },
     methods: {
       completeTask (task) {
-        task.completed = !task.completed
+        this.$store.commit('completeTask', { task })
       }
     }
   }
 </script>
 
-<style lang="less">
-
-  .fade-enter-active, .fade-leave-active {
-    transition: .5s;
-  }
-
-  /* .fade-leave-active in <2.1.8 */
-  .fade-enter, .fade-leave-to, .fade-leave-active {
-    opacity: 0;
-  }
-
+<style>
   .todo-list {
     margin: 0;
     padding: 0;
@@ -64,7 +42,7 @@
 
   .todo-completed{
     text-decoration: line-through;
-    color: #FF4C4C;
+    color: #cc0000;
   }
 
   .todo-list li:last-child {

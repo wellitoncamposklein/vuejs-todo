@@ -1,13 +1,18 @@
+<template>
+  <div>
+    <transition appear name="fade">
+      <input v-focus="true" class="new-todo"
+             @keyup.enter="addTask"
+             placeholder="O que precisa ser feito?">
+    </transition>
+  </div>
+</template>
+
 <script>
   import { Task } from '../models/Task'
   import Focus from '../directives/focus'
 
   export default {
-    name: 'InputTask',
-    data () {
-      return {
-      }
-    },
     directives: {
       'focus': Focus
     },
@@ -15,7 +20,7 @@
       addTask ($event) {
         let value = $event.target.value
         let task = this.createTask(value)
-        this.broadcast(task)
+        this.$store.commit('addTask', { task })
         this.clearField($event)
       },
       createTask (value) {
@@ -26,23 +31,10 @@
       },
       clearField () {
         this.$el.querySelector('input').value = ''
-      },
-      broadcast (task) {
-        this.$events.emit('newTask', task)
       }
     }
   }
 </script>
-
-<template>
-  <div>
-    <input v-focus="true"
-           class="new-todo"
-           @keyup.enter="addTask"
-           placeholder="O que precisa ser feito?">
-  </div>
-</template>
-
 <style>
   .todoapp input::-webkit-input-placeholder {
     font-style: italic;

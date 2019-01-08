@@ -5,6 +5,9 @@
 ## Build Setup
 
 ``` bash
+# node version
+v7.3.0
+
 # install dependencies
 npm install
 

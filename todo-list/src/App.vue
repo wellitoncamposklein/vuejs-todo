@@ -1,16 +1,14 @@
 <template>
-  <div>
   <section class="todoapp">
     <header class="header">
       <h1>Tarefas</h1>
-      <input-task></input-task>
-      <task-list :todo-list="tasks"></task-list>
-      <router-link class="cep" to="/cep">Verificar CEP</router-link>
     </header>
+    <input-task></input-task>
+    <task-list ></task-list>
+    <router-link class="cep" to="/cep">Verificar CEP</router-link>
+    <footer-todo>
+    </footer-todo>
   </section>
-  <footer-todo>
-  </footer-todo>
-  </div>
 </template>
 
 <script>
@@ -25,18 +23,8 @@
       TaskList,
       FooterTodo
     },
-    data () {
-      return {
-        tasks: []
-      }
-    },
     mounted () {
       this.$events.on('newTask', eventData => this.addTask(eventData))
-    },
-    methods: {
-      addTask (task) {
-        this.tasks.push(task)
-      }
     }
   }
 </script>

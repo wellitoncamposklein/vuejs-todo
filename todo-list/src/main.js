@@ -29,8 +29,11 @@ Vue.use(VueResource)
 import VueEvents from './plugins/events'
 Vue.use(VueEvents)
 
+import store from './store'
+
 /* eslint-disable no-new */
 new Vue({
+  store,
   router,
   el: '#app',
   template: `
