@@ -9,13 +9,21 @@
       <p>Cidade: {{ address.cidade }}</p>
       <p>Estado: {{ address.estado }}</p>
     </div>
+    <footer-todo>
+      <p>CEP Checker MIT License</p>
+      <p>CEP Checker is part of ToDo</p>
+    </footer-todo>
   </section>
 </template>
 
 <script>
   import AwesomeMask from 'awesome-mask'
+  import FooterTodo from './components/FooterTodo'
 
   export default {
+    components: {
+      FooterTodo
+    },
     name: 'CepChecker',
     data () {
       return {
@@ -34,7 +42,6 @@
           }, (res) => {
             console.log(res)
           })
-        console.log(this.address)
       },
       hasAddress () {
         return Object.keys(this.address).length > 0

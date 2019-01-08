@@ -1,4 +1,5 @@
 <template>
+  <div>
   <section class="todoapp">
     <header class="header">
       <h1>Tarefas</h1>
@@ -7,17 +8,22 @@
       <router-link class="cep" to="/cep">Verificar CEP</router-link>
     </header>
   </section>
+  <footer-todo>
+  </footer-todo>
+  </div>
 </template>
 
 <script>
   import InputTask from './components/InputTask'
   import TaskList from './components/TaskList'
+  import FooterTodo from './components/FooterTodo'
 
   export default {
     name: 'app',
     components: {
       InputTask,
-      TaskList
+      TaskList,
+      FooterTodo
     },
     data () {
       return {
