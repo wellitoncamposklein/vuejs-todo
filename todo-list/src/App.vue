@@ -4,6 +4,7 @@
       <h1>Tarefas</h1>
       <input-task @newTask="addTask"></input-task>
       <task-list :todo-list="tasks"></task-list>
+      <router-link class="cep" to="/cep">Verificar CEP</router-link>
     </header>
   </section>
 </template>
@@ -70,7 +71,14 @@
   :focus {
     outline: 0;
   }
-
+  .cep{
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 5px;
+    border-top: 1px solid #ededed;
+    text-align: center;
+  }
   .hidden {
     display: none;
   }
