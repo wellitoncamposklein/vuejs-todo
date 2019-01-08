@@ -2,7 +2,7 @@
   <section class="todoapp">
     <header class="header">
       <h1>Tarefas</h1>
-      <input-task @newTask="addTask"></input-task>
+      <input-task></input-task>
       <task-list :todo-list="tasks"></task-list>
       <router-link class="cep" to="/cep">Verificar CEP</router-link>
     </header>
@@ -23,6 +23,9 @@
       return {
         tasks: []
       }
+    },
+    mounted () {
+      this.$events.on('newTask', eventData => this.addTask(eventData))
     },
     methods: {
       addTask (task) {

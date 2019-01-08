@@ -1,11 +1,15 @@
 <script>
   import { Task } from '../models/Task'
+  import Focus from '../directives/focus'
 
   export default {
     name: 'InputTask',
     data () {
       return {
       }
+    },
+    directives: {
+      'focus': Focus
     },
     methods: {
       addTask ($event) {
@@ -24,7 +28,7 @@
         this.$el.querySelector('input').value = ''
       },
       broadcast (task) {
-        this.$emit('newTask', task)
+        this.$events.emit('newTask', task)
       }
     }
   }
@@ -32,7 +36,8 @@
 
 <template>
   <div>
-    <input class="new-todo"
+    <input v-focus="true"
+           class="new-todo"
            @keyup.enter="addTask"
            placeholder="O que precisa ser feito?">
   </div>

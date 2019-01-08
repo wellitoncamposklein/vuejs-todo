@@ -9,7 +9,10 @@ import App from './App'
 */
 import VueRouter from 'vue-router'
 import routes from './routes'
-
+const router = new VueRouter({
+  mode: 'history',
+  routes
+})
 Vue.use(VueRouter)
 
 /* =======
@@ -17,13 +20,14 @@ Vue.use(VueRouter)
 *  =======
 */
 import VueResource from 'vue-resource'
-
 Vue.use(VueResource)
 
-const router = new VueRouter({
-  mode: 'history',
-  routes
-})
+/* =======
+*  Events
+*  =======
+*/
+import VueEvents from './plugins/events'
+Vue.use(VueEvents)
 
 /* eslint-disable no-new */
 new Vue({
